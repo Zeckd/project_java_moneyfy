@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import kg.megalab.expensetracker.enums.CategoryType;
 
 @Entity
-@Table (name = "catrgories")
+@Table (name = "catergories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
