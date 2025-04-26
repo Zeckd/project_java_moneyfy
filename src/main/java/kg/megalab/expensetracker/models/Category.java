@@ -1,6 +1,7 @@
 package kg.megalab.expensetracker.models;
 
 import jakarta.persistence.*;
+import kg.megalab.expensetracker.enums.CategoryType;
 
 @Entity
 @Table (name = "catrgories")
@@ -9,11 +10,19 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String type;
+    private CategoryType type;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    public CategoryType getType() {
+        return type;
+    }
+
+    public void setType(CategoryType type) {
+        this.type = type;
+    }
     public Long getId() {
         return id;
     }
@@ -30,13 +39,6 @@ public class Category {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public User getUser() {
         return user;
