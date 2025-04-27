@@ -18,7 +18,7 @@ public interface TransactionMapper {
     Transaction transactionCreateDtoToTransaction (TransactionCreateDto transactionCreateDto);
 
     @Mapping(source = "transaction.category", target = "categoryDto")
-    @Mapping(source = "transaction.user.id", target = "userId.userId")
+    @Mapping(source = "transaction.user.id", target = "userId")
     TransactionDto transactionToTransactionDto (Transaction transaction);
 
 }
