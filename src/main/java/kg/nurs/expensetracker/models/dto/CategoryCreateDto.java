@@ -1,4 +1,4 @@
-package kg.megalab.expensetracker.models.dto;
+package kg.nurs.expensetracker.models.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

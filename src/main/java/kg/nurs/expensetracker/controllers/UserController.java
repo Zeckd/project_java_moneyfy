@@ -1,8 +1,8 @@
-package kg.megalab.expensetracker.controllers;
+package kg.nurs.expensetracker.controllers;
 
 import jakarta.validation.Valid;
-import kg.megalab.expensetracker.models.dto.UserCreateDto;
-import kg.megalab.expensetracker.services.UserService;
+import kg.nurs.expensetracker.models.dto.UserCreateDto;
+import kg.nurs.expensetracker.services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

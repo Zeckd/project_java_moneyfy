@@ -1,4 +1,4 @@
-package kg.megalab.expensetracker.models;
+package kg.nurs.expensetracker.models;
 
 import jakarta.persistence.*;
 
@@ -68,5 +68,13 @@ public class Transaction {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

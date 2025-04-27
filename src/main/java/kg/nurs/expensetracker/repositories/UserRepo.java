@@ -1,6 +1,6 @@
-package kg.megalab.expensetracker.repositories;
+package kg.nurs.expensetracker.repositories;
 
-import kg.megalab.expensetracker.models.User;
+import kg.nurs.expensetracker.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package kg.megalab.expensetracker.models;
+package kg.nurs.expensetracker.models;
 
 import jakarta.persistence.*;
 

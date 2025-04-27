@@ -1,4 +1,4 @@
-package kg.megalab.expensetracker;
+package kg.nurs.expensetracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

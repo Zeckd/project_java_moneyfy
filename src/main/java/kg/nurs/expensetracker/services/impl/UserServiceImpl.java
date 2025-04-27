@@ -1,11 +1,11 @@
-package kg.megalab.expensetracker.services.impl;
+package kg.nurs.expensetracker.services.impl;
 
-import kg.megalab.expensetracker.mappers.UserMapper;
-import kg.megalab.expensetracker.models.User;
-import kg.megalab.expensetracker.models.dto.UserCreateDto;
-import kg.megalab.expensetracker.models.dto.UserDto;
-import kg.megalab.expensetracker.repositories.UserRepo;
-import kg.megalab.expensetracker.services.UserService;
+import kg.nurs.expensetracker.mappers.UserMapper;
+import kg.nurs.expensetracker.models.User;
+import kg.nurs.expensetracker.models.dto.UserCreateDto;
+import kg.nurs.expensetracker.models.dto.UserDto;
+import kg.nurs.expensetracker.repositories.UserRepo;
+import kg.nurs.expensetracker.services.UserService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +25,11 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
 
         return userMapper.UserToUserDto(user);
+    }
+
+    @Override
+    public User findUserById(Long userId) {
+        User user = userRepo.findById(userId).orElse(null);
+        return user;
     }
 }

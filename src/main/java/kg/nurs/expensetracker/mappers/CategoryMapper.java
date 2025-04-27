@@ -1,15 +1,19 @@
-package kg.megalab.expensetracker.mappers;
+package kg.nurs.expensetracker.mappers;
 
-import kg.megalab.expensetracker.models.Category;
-import kg.megalab.expensetracker.models.dto.CategoryCreateDto;
-import kg.megalab.expensetracker.models.dto.CategoryDto;
+import kg.nurs.expensetracker.models.Category;
+import kg.nurs.expensetracker.models.dto.CategoryCreateDto;
+import kg.nurs.expensetracker.models.dto.CategoryDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
+
+
+    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
 
     CategoryDto CategoryToCategoryDto(Category category);
     Category CategoryDtoToCategory(CategoryDto categoryDto);
@@ -20,4 +24,5 @@ public interface CategoryMapper {
     @Mapping(target = "user.id", source = "userId")
     Category CategoryCreateDtoToCategory(CategoryCreateDto categoryCreateDto);
     CategoryCreateDto CategoryToCategoryCreateDto(Category category);
+
 }

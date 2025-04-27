@@ -1,11 +1,11 @@
-package kg.megalab.expensetracker.services.impl;
+package kg.nurs.expensetracker.services.impl;
 
-import kg.megalab.expensetracker.mappers.CategoryMapper;
-import kg.megalab.expensetracker.models.Category;
-import kg.megalab.expensetracker.models.dto.CategoryCreateDto;
-import kg.megalab.expensetracker.models.dto.CategoryDto;
-import kg.megalab.expensetracker.repositories.CategoryRepo;
-import kg.megalab.expensetracker.services.CategoryService;
+import kg.nurs.expensetracker.mappers.CategoryMapper;
+import kg.nurs.expensetracker.models.Category;
+import kg.nurs.expensetracker.models.dto.CategoryCreateDto;
+import kg.nurs.expensetracker.models.dto.CategoryDto;
+import kg.nurs.expensetracker.repositories.CategoryRepo;
+import kg.nurs.expensetracker.services.CategoryService;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
@@ -41,5 +41,11 @@ public class CategoryServiceImpl implements CategoryService {
         Pageable pageable = (Pageable) PageRequest.of(pageNo, pageSize);
         List<Category> categories= categoryRepo.findAllByUserIsNullAndId(userId, pageable);
         return categoryMapper.CategoryListToCategoryDtoList(categories);
+    }
+
+    @Override
+    public Category findCategoryById(Long categoryId) {
+        Category category = categoryRepo.findById(categoryId).orElse(null);
+        return category;
     }
 }

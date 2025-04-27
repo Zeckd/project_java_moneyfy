@@ -1,9 +1,9 @@
-package kg.megalab.expensetracker.controllers;
+package kg.nurs.expensetracker.controllers;
 
 import jakarta.validation.Valid;
-import kg.megalab.expensetracker.models.dto.CategoryCreateDto;
-import kg.megalab.expensetracker.models.dto.CategoryDto;
-import kg.megalab.expensetracker.services.CategoryService;
+import kg.nurs.expensetracker.models.dto.CategoryCreateDto;
+import kg.nurs.expensetracker.models.dto.CategoryDto;
+import kg.nurs.expensetracker.services.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

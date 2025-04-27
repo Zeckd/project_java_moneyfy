@@ -1,4 +1,4 @@
-package kg.megalab.expensetracker.models.dto;
+package kg.nurs.expensetracker.models.dto;
 
 import kg.megalab.expensetracker.enums.CategoryType;
 
