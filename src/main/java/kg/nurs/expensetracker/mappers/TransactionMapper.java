@@ -3,6 +3,7 @@ package kg.nurs.expensetracker.mappers;
 import kg.nurs.expensetracker.models.Transaction;
 import kg.nurs.expensetracker.models.dto.TransactionCreateDto;
 import kg.nurs.expensetracker.models.dto.TransactionDto;
+import kg.nurs.expensetracker.models.dto.TransactionUpdateDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
@@ -23,7 +24,8 @@ public interface TransactionMapper {
     @Mapping(source = "transaction.user.id", target = "userId")
     TransactionDto transactionToTransactionDto (Transaction transaction);
 
-
     List<TransactionDto> transactionToTransactionDtoList (List<Transaction> transactions);
+
+    Transaction transactionUpdateDtoToTransaction (TransactionUpdateDto transactionUpdateDto);
 
 }

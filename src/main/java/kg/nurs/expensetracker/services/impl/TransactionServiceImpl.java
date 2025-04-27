@@ -8,6 +8,7 @@ import kg.nurs.expensetracker.models.User;
 import kg.nurs.expensetracker.models.dto.CategoryDto;
 import kg.nurs.expensetracker.models.dto.TransactionCreateDto;
 import kg.nurs.expensetracker.models.dto.TransactionDto;
+import kg.nurs.expensetracker.models.dto.TransactionUpdateDto;
 import kg.nurs.expensetracker.repositories.TransactionRepo;
 import kg.nurs.expensetracker.services.CategoryService;
 import kg.nurs.expensetracker.services.TransactionService;
@@ -50,4 +51,25 @@ public class TransactionServiceImpl implements TransactionService {
         List<TransactionDto> transactionDtos = TransactionMapper.INSTANCE.transactionToTransactionDtoList(transactions);
         return transactionDtos;
     }
+
+    @Override
+    public TransactionDto update(TransactionUpdateDto transactionUpdateDto, Long transactionId) {
+        Transaction transaction = transactionRepo.findById(transactionId).orElse(null);
+        Category category = categoryService.findCategoryById (transactionUpdateDto.getCategoryId());
+        transaction.setAmount(transactionUpdateDto.getAmount());
+        transaction.setCategory(category);
+        transaction.setType(transactionUpdateDto.getType());
+        transaction.setDescription(transactionUpdateDto.getDescription());
+        transaction.setType(transactionUpdateDto.getType());
+        transaction = transactionRepo.save(transaction);
+        return TransactionMapper.INSTANCE.transactionToTransactionDto(transaction);
+    }
+
+    @Override
+    public void deleteById(Long transactionId) {
+        transactionRepo.deleteById(transactionId);
+
+    }
+
+
 }
