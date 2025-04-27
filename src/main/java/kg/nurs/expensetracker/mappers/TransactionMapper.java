@@ -8,6 +8,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface TransactionMapper {
 
@@ -20,5 +22,8 @@ public interface TransactionMapper {
     @Mapping(source = "transaction.category", target = "categoryDto")
     @Mapping(source = "transaction.user.id", target = "userId")
     TransactionDto transactionToTransactionDto (Transaction transaction);
+
+
+    List<TransactionDto> transactionToTransactionDtoList (List<Transaction> transactions);
 
 }
