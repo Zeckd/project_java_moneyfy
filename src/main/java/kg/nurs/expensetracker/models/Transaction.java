@@ -43,7 +43,7 @@ public class Transaction {
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = type == null ? null : type.toUpperCase();
     }
 
     public Category getCategory() {

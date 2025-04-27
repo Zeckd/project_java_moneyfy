@@ -1,22 +1,23 @@
 package kg.nurs.expensetracker.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import kg.nurs.expensetracker.models.User;
+import kg.nurs.expensetracker.validation.UniqueField;
+
 
 import java.time.LocalDateTime;
 
 public record UserCreateDto(
-        @NotBlank
         @NotNull
-        @Size(min = 2, max = 50)
+        @NotEmpty
+        @Size(min = 2, max = 255)
         String name,
-
-        @NotBlank
-        @NotNull
-        @Email
+        @NotEmpty(message = "Email не должен быть пустым")
+        @NotNull(message = "Email не должен быть null")
+        @NotBlank(message = "Email не должен содержать пробелов")
+        @Email(message = "Некорректный email")
+        @UniqueField(fieldName = "email", entityClass = User.class, message = "Такой email уже существует")
         String email,
 
         @JsonFormat(pattern = "dd.MM.yyyy HH:mm")

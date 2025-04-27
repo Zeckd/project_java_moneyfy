@@ -35,7 +35,7 @@ public class Category {
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = type == null ? null : type.toUpperCase();
     }
 
     public User getUser() {

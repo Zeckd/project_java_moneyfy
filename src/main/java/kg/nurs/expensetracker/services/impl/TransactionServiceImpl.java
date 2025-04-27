@@ -1,11 +1,9 @@
 package kg.nurs.expensetracker.services.impl;
 
-import kg.nurs.expensetracker.mappers.CategoryMapper;
 import kg.nurs.expensetracker.mappers.TransactionMapper;
 import kg.nurs.expensetracker.models.Category;
 import kg.nurs.expensetracker.models.Transaction;
 import kg.nurs.expensetracker.models.User;
-import kg.nurs.expensetracker.models.dto.CategoryDto;
 import kg.nurs.expensetracker.models.dto.TransactionCreateDto;
 import kg.nurs.expensetracker.models.dto.TransactionDto;
 import kg.nurs.expensetracker.repositories.TransactionRepo;

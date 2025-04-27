@@ -23,6 +23,5 @@ public interface CategoryMapper {
 
     @Mapping(target = "user.id", source = "userId")
     Category CategoryCreateDtoToCategory(CategoryCreateDto categoryCreateDto);
-    CategoryCreateDto CategoryToCategoryCreateDto(Category category);
 
 }
