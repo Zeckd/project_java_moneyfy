@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public record TransactionDto(
         Long id,
-        UserTransactionDto userId,
+        Long userId,
         Double amount,
         String type,
         CategoryDto categoryDto,
