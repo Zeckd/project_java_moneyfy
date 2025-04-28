@@ -12,6 +12,9 @@ import kg.nurs.expensetracker.services.TransactionService;
 import kg.nurs.expensetracker.services.UserService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class TransactionServiceImpl implements TransactionService {
 
@@ -37,5 +40,12 @@ public class TransactionServiceImpl implements TransactionService {
         transaction.setUser(user);
         transaction = transactionRepo.save(transaction);
         return TransactionMapper.INSTANCE.transactionToTransactionDto(transaction);
+    }
+
+    @Override
+    public List<TransactionDto> getAllUserTransactionsById(Long userId) {
+        List <Transaction> transactions = transactionRepo.findAllTransactionsById(userId);
+        List<TransactionDto> transactionDtos = TransactionMapper.INSTANCE.transactionToTransactionDtoList(transactions);
+        return transactionDtos;
     }
 }
