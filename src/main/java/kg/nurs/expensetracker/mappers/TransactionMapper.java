@@ -1,6 +1,7 @@
 package kg.nurs.expensetracker.mappers;
 
 import kg.nurs.expensetracker.models.Transaction;
+import kg.nurs.expensetracker.models.dto.BalanceUserDto;
 import kg.nurs.expensetracker.models.dto.TransactionCreateDto;
 import kg.nurs.expensetracker.models.dto.TransactionDto;
 import kg.nurs.expensetracker.models.dto.TransactionUpdateDto;
@@ -28,4 +29,5 @@ public interface TransactionMapper {
 
     Transaction transactionUpdateDtoToTransaction (TransactionUpdateDto transactionUpdateDto);
 
+    List <BalanceUserDto> transactionToBalanceUserDtoList (List<Transaction> transactions);
 }

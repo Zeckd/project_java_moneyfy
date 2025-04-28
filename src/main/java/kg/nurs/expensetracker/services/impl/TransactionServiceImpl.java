@@ -5,10 +5,7 @@ import kg.nurs.expensetracker.mappers.TransactionMapper;
 import kg.nurs.expensetracker.models.Category;
 import kg.nurs.expensetracker.models.Transaction;
 import kg.nurs.expensetracker.models.User;
-import kg.nurs.expensetracker.models.dto.CategoryDto;
-import kg.nurs.expensetracker.models.dto.TransactionCreateDto;
-import kg.nurs.expensetracker.models.dto.TransactionDto;
-import kg.nurs.expensetracker.models.dto.TransactionUpdateDto;
+import kg.nurs.expensetracker.models.dto.*;
 import kg.nurs.expensetracker.repositories.TransactionRepo;
 import kg.nurs.expensetracker.services.CategoryService;
 import kg.nurs.expensetracker.services.TransactionService;
@@ -69,6 +66,23 @@ public class TransactionServiceImpl implements TransactionService {
     public void deleteById(Long transactionId) {
         transactionRepo.deleteById(transactionId);
 
+    }
+
+    @Override
+    public BalanceUserDto getBalance(Long userId) {
+
+        //Нашли все поступление по id user
+        Double incomesTransaction = transactionRepo.findAllIncomeTransactionsById(userId);
+        //Нашли все траты по id user
+        Double expenseTransactions = transactionRepo.findAllExpenseTransactionsById(userId);
+
+        BalanceUserDto balanceUserDto = new BalanceUserDto();
+
+        balanceUserDto.setTotalIncome(incomesTransaction);
+        balanceUserDto.setTotalExpense(expenseTransactions);
+        balanceUserDto.setBalance(incomesTransaction - expenseTransactions);
+
+        return balanceUserDto;
     }
 
 
