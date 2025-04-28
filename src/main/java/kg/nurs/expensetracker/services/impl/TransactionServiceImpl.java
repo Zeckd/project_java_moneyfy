@@ -1,11 +1,11 @@
 package kg.nurs.expensetracker.services.impl;
 
+import kg.nurs.expensetracker.mappers.CategoryMapper;
 import kg.nurs.expensetracker.mappers.TransactionMapper;
 import kg.nurs.expensetracker.models.Category;
 import kg.nurs.expensetracker.models.Transaction;
 import kg.nurs.expensetracker.models.User;
-import kg.nurs.expensetracker.models.dto.TransactionCreateDto;
-import kg.nurs.expensetracker.models.dto.TransactionDto;
+import kg.nurs.expensetracker.models.dto.*;
 import kg.nurs.expensetracker.repositories.TransactionRepo;
 import kg.nurs.expensetracker.services.CategoryService;
 import kg.nurs.expensetracker.services.TransactionService;
@@ -48,4 +48,42 @@ public class TransactionServiceImpl implements TransactionService {
         List<TransactionDto> transactionDtos = TransactionMapper.INSTANCE.transactionToTransactionDtoList(transactions);
         return transactionDtos;
     }
+
+    @Override
+    public TransactionDto update(TransactionUpdateDto transactionUpdateDto, Long transactionId) {
+        Transaction transaction = transactionRepo.findById(transactionId).orElse(null);
+        Category category = categoryService.findCategoryById (transactionUpdateDto.getCategoryId());
+        transaction.setAmount(transactionUpdateDto.getAmount());
+        transaction.setCategory(category);
+        transaction.setType(transactionUpdateDto.getType());
+        transaction.setDescription(transactionUpdateDto.getDescription());
+        transaction.setType(transactionUpdateDto.getType());
+        transaction = transactionRepo.save(transaction);
+        return TransactionMapper.INSTANCE.transactionToTransactionDto(transaction);
+    }
+
+    @Override
+    public void deleteById(Long transactionId) {
+        transactionRepo.deleteById(transactionId);
+
+    }
+
+    @Override
+    public BalanceUserDto getBalance(Long userId) {
+
+        //Нашли все поступление по id user
+        Double incomesTransaction = transactionRepo.findAllIncomeTransactionsById(userId);
+        //Нашли все траты по id user
+        Double expenseTransactions = transactionRepo.findAllExpenseTransactionsById(userId);
+
+        BalanceUserDto balanceUserDto = new BalanceUserDto();
+
+        balanceUserDto.setTotalIncome(incomesTransaction);
+        balanceUserDto.setTotalExpense(expenseTransactions);
+        balanceUserDto.setBalance(incomesTransaction - expenseTransactions);
+
+        return balanceUserDto;
+    }
+
+
 }
