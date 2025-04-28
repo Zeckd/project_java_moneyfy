@@ -33,8 +33,8 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public TransactionDto create(TransactionCreateDto transactionCreateDto) {
-        Category category = categoryService.findCategoryById (transactionCreateDto.categoryId());
-        User user = userService.findUserById (transactionCreateDto.userId());
+        Category category = categoryService.findCategoryById(transactionCreateDto.categoryId());
+        User user = userService.findUserById(transactionCreateDto.userId());
         Transaction transaction = TransactionMapper.INSTANCE.transactionCreateDtoToTransaction(transactionCreateDto);
         transaction.setCategory(category);
         transaction.setUser(user);

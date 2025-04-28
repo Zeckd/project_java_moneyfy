@@ -22,7 +22,7 @@ public class TransactionController {
 
     @PostMapping ("/create")
     public ResponseEntity <?> createTransaction (@Valid @RequestBody TransactionCreateDto transactionCreateDto) {
-        TransactionDto savedTransactionDto = transactionService.create (transactionCreateDto);
+        TransactionDto savedTransactionDto = transactionService.create(transactionCreateDto);
         return ResponseEntity.created(null).body(savedTransactionDto);
     }
 

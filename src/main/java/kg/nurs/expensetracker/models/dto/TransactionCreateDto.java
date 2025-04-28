@@ -11,17 +11,17 @@ import kg.nurs.expensetracker.validation.ExistsEntity;
 import java.time.LocalDateTime;
 
 public record TransactionCreateDto(
-        @ExistsEntity(entityClass = User.class, message = "Пользователь не существует")
-        Long userId,
         @Positive
         Double amount,
-        @AllowedValues(values = {"EXPENSE", "INCOME"})
+        @ExistsEntity(entityClass = User.class, message = "Пользователь не существует")
+        Long userId,
+        @AllowedValues(values = {"EXPENSE", "INCOME"}, message = "поле должен быть expense или income")
         String type,
         @NotNull
         @ExistsEntity(entityClass = Category.class, message = "Категория не существует")
         Long categoryId,
         String description,
-        @JsonFormat (pattern = "dd.MM.yyyy HH.mm")
+        @JsonFormat (pattern = "dd.MM.yyyy HH:mm")
         LocalDateTime date
 ) {
 }

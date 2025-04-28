@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto create(UserCreateDto userCreateDto) {
-        User user = userMapper.UserToUserCreateDto(userCreateDto);
+        User user = userMapper.UserCreateDtoToUser(userCreateDto);
         userRepo.save(user);
 
         return userMapper.UserToUserDto(user);
@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(Long userId) {
-        User user = userRepo.findById(userId).orElse(null);
-        return user;
+        return userRepo.findById(userId).orElseThrow();
     }
 }

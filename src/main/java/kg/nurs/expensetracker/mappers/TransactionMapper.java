@@ -17,12 +17,12 @@ public interface TransactionMapper {
 
     TransactionMapper INSTANCE = Mappers.getMapper(TransactionMapper.class);
 
-    @Mapping(source = "transactionCreateDto.userId", target = "user.id")
-    @Mapping(source = "transactionCreateDto.categoryId", target = "category.id")
+    @Mapping(source = "userId", target = "user.id")
+    @Mapping(source = "categoryId", target = "category.id")
     Transaction transactionCreateDtoToTransaction (TransactionCreateDto transactionCreateDto);
 
-    @Mapping(source = "transaction.category", target = "categoryDto")
-    @Mapping(source = "transaction.user.id", target = "userId")
+    @Mapping(source = "category", target = "categoryDto")
+    @Mapping(source = "user.id", target = "userId")
     TransactionDto transactionToTransactionDto (Transaction transaction);
     Transaction transactionDtoToTransaction (TransactionDto transactionDto);
 
