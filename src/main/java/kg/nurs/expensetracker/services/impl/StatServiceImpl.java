@@ -5,6 +5,9 @@ import kg.nurs.expensetracker.repositories.StatRepo;
 import kg.nurs.expensetracker.services.StatService;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -21,11 +24,12 @@ public class StatServiceImpl implements StatService {
         List<Object[]> results = statRepo.getStatByUserId(userId);
 
         return results.stream().map(obj -> {
-            String monthStr = (String) obj[0];
+            Timestamp timestamp =(Timestamp)  obj[0];
+            LocalDate month = timestamp.toLocalDateTime().toLocalDate();
             Double totalIncome = ((Number) obj[1]).doubleValue();
             Double totalExpense = ((Number) obj[2]).doubleValue();
 
-            return new MonthlyStatDto(monthStr, totalIncome, totalExpense);
+            return new MonthlyStatDto(month, totalIncome, totalExpense);
         }).toList();
     }
 }

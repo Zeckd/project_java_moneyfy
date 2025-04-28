@@ -13,7 +13,7 @@ public record TransactionDto(
         String type,
         CategoryDto categoryDto,
         String description,
-        @JsonFormat(pattern = "dd.MM.yyyy HH.mm")
+        @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
         LocalDateTime date
 ) {
 }

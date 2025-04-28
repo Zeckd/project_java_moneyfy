@@ -12,16 +12,16 @@ public interface StatRepo extends JpaRepository<Transaction, Long> {
 
 
     @Query(value = "SELECT " +
-            "  TO_CHAR(u.date, 'MM.YYYY') AS month, " +
+            "  DATE_TRUNC('month', u.date) AS month, " +
             "  SUM(CASE WHEN u.type = 'INCOME' THEN u.amount ELSE 0 END) AS total_income, " +
             "  SUM(CASE WHEN u.type = 'EXPENSE' THEN u.amount ELSE 0 END) AS total_expense " +
             "FROM " +
-            "  transactions u " +  // <-- здесь именно название таблицы в БД
+            "  transactions u " +
             "WHERE u.user_id = ?1 " +
             "GROUP BY " +
             "  month " +
             "ORDER BY " +
             "  month",
-            nativeQuery = true)  // <-- ОБЯЗАТЕЛЬНО
+            nativeQuery = true)
     List<Object[]> getStatByUserId(long userId);
 }
